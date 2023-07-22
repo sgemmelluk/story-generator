@@ -41,6 +41,7 @@ export default function MainActors({ mainActors, handleActorsAdded }: Props) {
         justifyContent="center"
         alignItems="center"
         minHeight="50vh"
+        minWidth="50vw"
         sx={{
           "& .MuiTextField-root": {
             m: 2,

@@ -5,8 +5,6 @@ import Welcome from "./pages/Welcome";
 import AdditionalActors from "./pages/additionalActors";
 import StoryParams from "./pages/storyParams";
 import GeneratedStoryText from "./pages/generatedStoryText";
-import GeneratedStoryImages from "./pages/generatedStoryImages";
-import GeneratedStory from "./pages/generatedStory";
 import { useState } from "react";
 
 function App() {
@@ -75,11 +73,6 @@ function App() {
           path="/generated_story_text"
           element={<GeneratedStoryText storyModel={storyModel} />}
         ></Route>
-        <Route
-          path="/generated_story_images"
-          element={<GeneratedStoryImages />}
-        ></Route>
-        <Route path="/your_story" element={<GeneratedStory />}></Route>
       </Routes>
     </BrowserRouter>
   );

@@ -68,7 +68,7 @@ export default function StoryParams({
         alignItems="center"
         minHeight="50vh"
         sx={{
-          "& .MuiTextField-root": { m: 2, width: "50ch" },
+          "& .MuiTextField-root": { m: 2, width: "60ch" },
         }}
         noValidate
         autoComplete="off"

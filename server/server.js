@@ -2,7 +2,6 @@ const express = require('express')
 const { Configuration, OpenAIApi } = require('openai');
 const cors = require('cors')
 const app = express()
-const axios = require('axios');
 const port = 3000
 app.use(cors())
 app.use(express.json());
@@ -14,41 +13,26 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 
+const addFriendToPrompt = (friendName) => {
+  return "The story should include a friend named " + friendName + ".";
+}
+
+const addCharacterToPrompt = (characterName) => {
+  return "The story should feature " + characterName + ".";
+}
+
 const formatStoryPrompt = (storyModel) => {
   let storyPrompt =
     "Generate a kids short story around 1000 words with a lead character called " +
     storyModel.actors.mainCharacter +
     ". ";
 
-  storyPrompt += storyModel.actors.friend1
-    ? "The story should include a friend named " +
-    storyModel.actors.friend1 +
-    ". "
-    : "";
+  storyPrompt += storyModel.actors.friend1 ? addFriendToPrompt(storyModel.actors.friend1) : "";
+  storyPrompt += storyModel.actors.friend2 ? addFriendToPrompt(storyModel.actors.friend2) : "";
+  storyPrompt += storyModel.actors.friend3 ? addFriendToPrompt(storyModel.actors.friend3) : "";
 
-  storyPrompt += storyModel.actors.friend2
-    ? "The story should include a friend named " +
-    storyModel.actors.friend2 +
-    ". "
-    : "";
-
-  storyPrompt += storyModel.actors.friend3
-    ? "The story should include a friend named " +
-    storyModel.actors.friend3 +
-    ". "
-    : "";
-
-  storyPrompt += storyModel.additionalActors.specialCharacter1
-    ? "The story should feature " +
-    storyModel.additionalActors.specialCharacter1 +
-    ". "
-    : "";
-
-  storyPrompt += storyModel.additionalActors.specialCharacter2
-    ? "The story should feature " +
-    storyModel.additionalActors.specialCharacter2 +
-    ". "
-    : "";
+  storyPrompt += storyModel.additionalActors.specialCharacter1 ? addCharacterToPrompt(storyModel.additionalActors.specialCharacter1) : "";
+  storyPrompt += storyModel.additionalActors.specialCharacter2 ? addCharacterToPrompt(storyModel.additionalActors.specialCharacter2) : "";
 
   // set the theme of the story and hero (both required)
   storyPrompt +=
@@ -60,6 +44,23 @@ const formatStoryPrompt = (storyModel) => {
 
   return storyPrompt;
 };
+
+// call this when working on front end stuff.
+app.post('/stub', async (req, res) => {
+
+  try {
+
+    await new Promise(r => setTimeout(r, 5000));
+
+    return res.status(200).json({
+      success: true,
+      message: "Generate a kids short story around 1000 words with a lead character called Stephen. ",
+    });
+
+  } catch (error) {
+    console.log(error.message);
+  }
+});
 
 
 app.post('/generate_story', async (req, res) => {
