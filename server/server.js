@@ -54,7 +54,7 @@ app.post('/stub', async (req, res) => {
 
     return res.status(200).json({
       success: true,
-      message: "Generate a kids short story around 1000 words with a lead character called Stephen. ",
+      message: "test story returned",
     });
 
   } catch (error) {
@@ -91,10 +91,13 @@ app.post('/generate_story', async (req, res) => {
     });
 
   } catch (error) {
-    console.log(error.message);
+    return res.status(200).json({
+      success: true,
+      message: "Unable to create your story at this time sorry.  Try again later.",
+    });
   }
 });
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+  console.log(`Listening on port ${port}`)
 })

@@ -9,9 +9,9 @@ import { useState } from "react";
 
 function App() {
   const [storyModel, setStoryModel] = useState<IStoryModel>({
-    actors: {},
-    additionalActors: {},
-    storyParameters: {},
+    actors: { mainCharacter: "", friend1: "", friend2: "", friend3: "" },
+    additionalActors: { specialCharacter1: "", specialCharacter2: "" },
+    storyParameters: { topic: "", hero: "" },
   });
 
   const handleActorsAdded = (actors: IActors) => {
@@ -33,7 +33,6 @@ function App() {
       ...storyModel,
       storyParameters,
     }));
-    console.log(storyModel);
   };
 
   return (

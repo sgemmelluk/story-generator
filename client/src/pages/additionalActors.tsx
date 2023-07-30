@@ -5,6 +5,7 @@ import Stack from "@mui/material/Stack";
 import { useNavigate } from "react-router-dom";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import { useState } from "react";
+import Typography from "@mui/material/Typography";
 
 interface Props {
   additionalActors: IAdditionalActors;
@@ -38,22 +39,32 @@ export default function AdditionalActors({
   return (
     <>
       <Box
-        component="form"
         display="flex"
         justifyContent="center"
         alignItems="center"
         minHeight="50vh"
+        minWidth="50vw"
+        maxWidth="500"
         sx={{
-          "& .MuiTextField-root": { m: 2, width: "50ch" },
+          "& .MuiTextField-root": {
+            m: 2,
+            width: "50ch",
+          },
         }}
-        noValidate
-        autoComplete="off"
       >
         <Stack
           spacing={5}
-          sx={{ bgcolor: "white", borderRadius: 5, padding: 5 }}
+          sx={{ bgcolor: "white", borderRadius: 5, padding: 5, maxWidth: 500 }}
         >
-          <h1>Enter Special Characters</h1>
+          <Typography variant="h4" color="text.secondary" alignSelf={"center"}>
+            Enter Special Characters
+          </Typography>
+          <Typography variant="body1" color="text.primary">
+            Here you can add some special characters to be included, this could
+            be a superhero or even a family pet. If adding a pet make sure you
+            tell us what type of animal it is, e.g. "Lucy the Cat" or "Brian the
+            Parrot"
+          </Typography>
           <TextField
             id="special-character1"
             label="1st Special Character"
@@ -70,8 +81,11 @@ export default function AdditionalActors({
             onChange={handleChange}
             placeholder="E.g. Rover the dog"
           />
-
-          <ButtonGroup variant="outlined" aria-label="outlined button group">
+          <ButtonGroup
+            sx={{ justifyContent: "center" }}
+            variant="outlined"
+            aria-label="outlined button group"
+          >
             <Button variant="contained" color="secondary" onClick={handleBack}>
               Back
             </Button>

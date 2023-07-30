@@ -12,6 +12,7 @@ import {
   OutlinedInput,
   Select,
   SelectChangeEvent,
+  Typography,
 } from "@mui/material";
 
 interface Props {
@@ -62,22 +63,31 @@ export default function StoryParams({
   return (
     <>
       <Box
-        component="form"
         display="flex"
         justifyContent="center"
         alignItems="center"
         minHeight="50vh"
+        minWidth="50vw"
+        maxWidth="500"
         sx={{
-          "& .MuiTextField-root": { m: 2, width: "60ch" },
+          "& .MuiTextField-root": {
+            m: 2,
+            width: "50ch",
+          },
         }}
-        noValidate
-        autoComplete="off"
       >
         <Stack
           spacing={2}
-          sx={{ bgcolor: "white", borderRadius: 5, padding: 5 }}
+          sx={{ bgcolor: "white", borderRadius: 5, padding: 5, maxWidth: 500 }}
         >
-          <h1>Almost there...</h1>
+          <Typography variant="h4" color="text.secondary" alignSelf={"center"}>
+            Almost there...
+          </Typography>
+          <Typography variant="body1" color="text.primary">
+            You are one step away from generating your story, tell us what you
+            would like to be the theme of your story and more importantly who is
+            going to be the hero!
+          </Typography>
           <TextField
             required
             id="story-topic"
@@ -100,7 +110,7 @@ export default function StoryParams({
               sx={{ marginLeft: 2, marginRight: 2 }}
               labelId="hero-select-label"
               id="hero-select"
-              value={storyParams.hero}
+              value={storyParams.hero ? storyParams.hero : actors.mainCharacter}
               name="hero"
               input={<OutlinedInput label="Hero" />}
               onChange={handleHeroChange}
@@ -134,7 +144,11 @@ export default function StoryParams({
               )}
             </Select>
           </FormControl>
-          <ButtonGroup variant="outlined" aria-label="outlined button group">
+          <ButtonGroup
+            sx={{ justifyContent: "center" }}
+            variant="outlined"
+            aria-label="outlined button group"
+          >
             <Button variant="contained" color="secondary" onClick={handleBack}>
               Back
             </Button>

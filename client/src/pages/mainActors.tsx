@@ -4,6 +4,7 @@ import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import Typography from "@mui/material/Typography";
 
 interface Props {
   mainActors: IActors;
@@ -36,26 +37,30 @@ export default function MainActors({ mainActors, handleActorsAdded }: Props) {
   return (
     <>
       <Box
-        component="form"
         display="flex"
         justifyContent="center"
         alignItems="center"
         minHeight="50vh"
         minWidth="50vw"
+        maxWidth="500"
         sx={{
           "& .MuiTextField-root": {
             m: 2,
             width: "50ch",
           },
         }}
-        noValidate
-        autoComplete="off"
       >
         <Stack
           spacing={5}
-          sx={{ bgcolor: "white", borderRadius: 5, padding: 5 }}
+          sx={{ bgcolor: "white", borderRadius: 5, padding: 5, maxWidth: 500 }}
         >
-          <h1>Enter Character Names</h1>
+          <Typography variant="h4" color="text.secondary" alignSelf={"center"}>
+            Add Story Characters
+          </Typography>
+          <Typography variant="body1" color="text.primary">
+            Add the names of the people you want to appear in your story below.
+            Only the main character is required to be entered.
+          </Typography>
           <TextField
             required
             id="main-character"
@@ -87,7 +92,12 @@ export default function MainActors({ mainActors, handleActorsAdded }: Props) {
             value={actors.friend3}
             onChange={handleChange}
           />
-          <Button variant="contained" color="primary" onClick={handleNext}>
+          <Button
+            sx={{ justifyContent: "center" }}
+            variant="contained"
+            color="primary"
+            onClick={handleNext}
+          >
             Next
           </Button>
         </Stack>

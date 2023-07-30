@@ -18,6 +18,7 @@ export default function Welcome() {
             padding: 5,
             marginLeft: 30,
             marginRight: 30,
+            maxWidth: 500,
           }}
         >
           <Typography variant="h2" color="text.secondary" alignSelf={"center"}>
@@ -32,7 +33,7 @@ export default function Welcome() {
             <br />
             <br /> You can also pick the type of adventure you want to go on and
             who the hero will be. So go ahead and click below to start your
-            adventure...Bon Voyage!
+            adventure.
           </Typography>
           <Button
             variant="contained"
