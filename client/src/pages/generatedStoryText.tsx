@@ -10,11 +10,15 @@ import Typography from "@mui/material/Typography";
 
 interface Props {
   storyModel: IStoryModel;
+  handleReInitialiseStory: () => void;
 }
 
-export default function GeneratedStoryText({ storyModel }: Props) {
+export default function GeneratedStoryText({
+  storyModel,
+  handleReInitialiseStory,
+}: Props) {
   const navigate = useNavigate();
-  const [story, setStory] = useState<String>();
+  const [story, setStory] = useState<string>();
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
@@ -29,6 +33,16 @@ export default function GeneratedStoryText({ storyModel }: Props) {
         setLoading(false);
       });
   }, []);
+
+  const copyStoryToClipboard = () => {
+    let generatedStory: string = story!;
+    navigator.clipboard.writeText(generatedStory);
+  };
+
+  const handleHomeClick = () => {
+    handleReInitialiseStory();
+    navigate("/");
+  };
 
   return (
     <>
@@ -110,6 +124,21 @@ export default function GeneratedStoryText({ storyModel }: Props) {
               onClick={() => navigate("/story_params")}
             >
               Back
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={copyStoryToClipboard}
+              disabled={loading}
+            >
+              Copy Story
+            </Button>
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={handleHomeClick}
+            >
+              Home
             </Button>
           </ButtonGroup>
         </Stack>

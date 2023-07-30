@@ -6,13 +6,22 @@ import AdditionalActors from "./pages/additionalActors";
 import StoryParams from "./pages/storyParams";
 import GeneratedStoryText from "./pages/generatedStoryText";
 import { useState } from "react";
+import About from "./pages/About";
 
 function App() {
-  const [storyModel, setStoryModel] = useState<IStoryModel>({
-    actors: { mainCharacter: "", friend1: "", friend2: "", friend3: "" },
-    additionalActors: { specialCharacter1: "", specialCharacter2: "" },
-    storyParameters: { topic: "", hero: "" },
-  });
+  const getEmptyModel = (): IStoryModel => {
+    return {
+      actors: { mainCharacter: "", friend1: "", friend2: "", friend3: "" },
+      additionalActors: { specialCharacter1: "", specialCharacter2: "" },
+      storyParameters: { topic: "", hero: "" },
+    };
+  };
+
+  const [storyModel, setStoryModel] = useState<IStoryModel>(getEmptyModel());
+
+  const handleReInitialiseStory = () => {
+    setStoryModel(getEmptyModel());
+  };
 
   const handleActorsAdded = (actors: IActors) => {
     setStoryModel((storyModel) => ({
@@ -39,6 +48,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Welcome />}></Route>
+        <Route path="/about" element={<About />}></Route>
         <Route
           path="/actors"
           element={
@@ -70,7 +80,12 @@ function App() {
         ></Route>
         <Route
           path="/generated_story_text"
-          element={<GeneratedStoryText storyModel={storyModel} />}
+          element={
+            <GeneratedStoryText
+              storyModel={storyModel}
+              handleReInitialiseStory={handleReInitialiseStory}
+            />
+          }
         ></Route>
       </Routes>
     </BrowserRouter>

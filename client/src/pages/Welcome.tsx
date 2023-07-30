@@ -42,6 +42,7 @@ export default function Welcome() {
           >
             Create your story...
           </Button>
+          <Button onClick={() => navigate("about")}>About this app</Button>
         </Stack>
       </Box>
     </>
