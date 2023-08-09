@@ -2,9 +2,11 @@ const express = require('express')
 const { Configuration, OpenAIApi } = require('openai');
 const cors = require('cors')
 const app = express()
-const port = 3000
+const path = require('path')
+
 app.use(cors())
 app.use(express.json());
+app.use(express.static(path.join(__dirname, 'dist')))
 require('dotenv').config()
 
 
@@ -12,6 +14,8 @@ const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
 });
 const openai = new OpenAIApi(configuration);
+
+const port = process.env.PORT
 
 const addFriendToPrompt = (friendName) => {
   return "The story should include a friend named " + friendName + ".";
@@ -62,7 +66,7 @@ app.post('/stub', async (req, res) => {
   }
 });
 
-
+// Calls ChatGPT to generate the story based on the prompt in the request body
 app.post('/generate_story', async (req, res) => {
 
   const prompt = req.body.model;
@@ -97,6 +101,11 @@ app.post('/generate_story', async (req, res) => {
     });
   }
 });
+
+// serve up the react app at the root
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'))
+})
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`)

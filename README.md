@@ -1,6 +1,6 @@
 # story-generator
 
-Personal project to learn using the openai API, React Routing and Material UI on the front end.
+Personal project to learn using the OpenAI API, React Routing and Material UI on the front end.
 
 The React client using Vite instead of create-react-app.
 
