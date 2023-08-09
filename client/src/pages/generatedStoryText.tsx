@@ -25,7 +25,7 @@ export default function GeneratedStoryText({
     const storyParams = { model: storyModel };
     setLoading(true);
     axios
-      .post("http://localhost:3000/generate_story", storyParams)
+      .post("http://34.201.57.54:3000/generate_story", storyParams)
       // Use this when debugging in order not to spend any money calling openAI
       //.post("http://localhost:3000/stub", storyParams)
       .then((response) => {
