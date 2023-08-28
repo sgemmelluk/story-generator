@@ -1,10 +1,11 @@
 import Button from "@mui/material/Button";
-import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Typography from "@mui/material/Typography";
+import Grid from "@mui/material/Grid";
+import * as styles from "../styles";
 
 interface Props {
   mainActors: IActors;
@@ -35,25 +36,9 @@ export default function MainActors({ mainActors, handleActorsAdded }: Props) {
   };
 
   return (
-    <>
-      <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        minHeight="50vh"
-        minWidth="50vw"
-        maxWidth="500"
-        sx={{
-          "& .MuiTextField-root": {
-            m: 2,
-            width: "50ch",
-          },
-        }}
-      >
-        <Stack
-          spacing={5}
-          sx={{ bgcolor: "white", borderRadius: 5, padding: 5, maxWidth: 500 }}
-        >
+    <Grid container maxWidth="md">
+      <Grid item xs={12}>
+        <Stack spacing={5} sx={styles.stack}>
           <Typography variant="h4" color="text.secondary" alignSelf={"center"}>
             Add Story Characters
           </Typography>
@@ -101,7 +86,7 @@ export default function MainActors({ mainActors, handleActorsAdded }: Props) {
             Next
           </Button>
         </Stack>
-      </Box>
-    </>
+      </Grid>
+    </Grid>
   );
 }

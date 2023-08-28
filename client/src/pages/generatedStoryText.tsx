@@ -1,12 +1,12 @@
 import Button from "@mui/material/Button";
-import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { CircularProgress, TextField } from "@mui/material";
+import { CircularProgress, Grid, TextField } from "@mui/material";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import Typography from "@mui/material/Typography";
+import * as styles from "../styles";
 
 interface Props {
   storyModel: IStoryModel;
@@ -25,9 +25,7 @@ export default function GeneratedStoryText({
     const storyParams = { model: storyModel };
     setLoading(true);
     axios
-      .post("http://34.201.57.54:3000/generate_story", storyParams)
-      // Use this when debugging in order not to spend any money calling openAI
-      //.post("http://localhost:3000/stub", storyParams)
+      .post("http://44.203.172.4:3000/generate_story", storyParams)
       .then((response) => {
         setStory(response.data.message);
         setLoading(false);
@@ -45,30 +43,9 @@ export default function GeneratedStoryText({
   };
 
   return (
-    <>
-      <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        minHeight="50vh"
-        minWidth="50vw"
-        maxWidth="500"
-        sx={{
-          "& .MuiTextField-root": {
-            m: 2,
-            width: "50ch",
-          },
-        }}
-      >
-        <Stack
-          spacing={2}
-          sx={{
-            bgcolor: "white",
-            borderRadius: 5,
-            padding: 5,
-            maxWidth: 500,
-          }}
-        >
+    <Grid container maxWidth="md">
+      <Grid item xs={12}>
+        <Stack spacing={2} sx={styles.stack}>
           {loading ? (
             <Stack spacing={2}>
               <Typography
@@ -142,7 +119,7 @@ export default function GeneratedStoryText({
             </Button>
           </ButtonGroup>
         </Stack>
-      </Box>
-    </>
+      </Grid>
+    </Grid>
   );
 }

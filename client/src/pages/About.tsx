@@ -1,26 +1,16 @@
 import Button from "@mui/material/Button";
-import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import { useNavigate } from "react-router-dom";
-import { Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
+import * as styles from "../styles";
 
 export default function About() {
   const navigate = useNavigate();
 
   return (
-    <>
-      <Box component="span" display="flex">
-        <Stack
-          spacing={2}
-          sx={{
-            bgcolor: "white",
-            borderRadius: 5,
-            padding: 5,
-            marginLeft: 30,
-            marginRight: 30,
-            maxWidth: 500,
-          }}
-        >
+    <Grid container maxWidth="md">
+      <Grid item xs={12}>
+        <Stack spacing={2} sx={styles.stack}>
           <Typography variant="h4" color="text.secondary">
             About the app
           </Typography>
@@ -55,7 +45,7 @@ export default function About() {
             Back
           </Button>
         </Stack>
-      </Box>
-    </>
+      </Grid>
+    </Grid>
   );
 }
