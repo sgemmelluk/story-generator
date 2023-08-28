@@ -1,6 +1,6 @@
 # Story Generator
 
-This app uses genertive AI to create a personalised child's story.
+This app uses generative AI to create a personalised child's story.
 
 ## Description
 
