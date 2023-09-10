@@ -49,8 +49,6 @@ const formatStoryPrompt = (storyModel) => {
   // Add any tutor options that may have been added
   storyPrompt += storyModel.storyParameters.tutorOptions;
 
-  console.log(storyPrompt);
-
   return storyPrompt;
 };
 
