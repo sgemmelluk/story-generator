@@ -53,7 +53,18 @@ export default function StoryParams({
     setstoryParams({ ...storyParams, [event.target.name]: event.target.value });
   };
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+  const handleTutorOptionsChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ): void => {
+    setstoryParams({
+      ...storyParams,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const handleTopicChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ): void => {
     setTopicError(false);
     setstoryParams({
       ...storyParams,
@@ -78,21 +89,15 @@ export default function StoryParams({
             id="story-topic"
             label="Story Topic"
             name="topic"
-            onChange={handleChange}
+            onChange={handleTopicChange}
             value={storyParams.topic}
-            placeholder="e.g.Pirate Adventure"
+            placeholder="e.g. A Pirate Adventure, Space story, Football match.  Try anything! "
             error={topicError}
             helperText={topicError ? "Please enter a story topic" : " "}
           />
           <FormControl>
-            <InputLabel
-              sx={{ marginLeft: 2, marginRight: 2 }}
-              id="hero-select-label"
-            >
-              Hero
-            </InputLabel>
+            <InputLabel id="hero-select-label">Hero</InputLabel>
             <Select
-              sx={{ marginLeft: 2, marginRight: 2 }}
               labelId="hero-select-label"
               id="hero-select"
               value={storyParams.hero ? storyParams.hero : actors.mainCharacter}
@@ -128,6 +133,21 @@ export default function StoryParams({
                 </MenuItem>
               )}
             </Select>
+            <TextField
+              sx={{ marginTop: 4 }}
+              id="Tutor-textarea"
+              label="Tutor options"
+              name="tutorOptions"
+              maxRows={10}
+              placeholder="Enter short sentences that will be used when generating the story, make sure a full stop after each one.
+              E.g. 
+              Bob is a boy.  
+              Dont include any physical attributes in the story.
+              Etc..."
+              multiline
+              value={storyParams.tutorOptions}
+              onChange={handleTutorOptionsChange}
+            />
           </FormControl>
           <ButtonGroup
             sx={{ justifyContent: "center" }}

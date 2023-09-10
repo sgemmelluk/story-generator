@@ -25,7 +25,7 @@ export default function GeneratedStoryText({
     const storyParams = { model: storyModel };
     setLoading(true);
     axios
-      .post("http://44.203.172.4:3000/generate_story", storyParams)
+      .post("http://localhost:3000/generate_story", storyParams)
       .then((response) => {
         setStory(response.data.message);
         setLoading(false);

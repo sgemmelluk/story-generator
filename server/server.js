@@ -40,11 +40,16 @@ const formatStoryPrompt = (storyModel) => {
 
   // set the theme of the story and hero (both required)
   storyPrompt +=
-    "The theme of the story should be a " +
+    "The theme of the story should be about " +
     storyModel.storyParameters.topic +
     ", where " +
     storyModel.storyParameters.hero +
     " is the hero.  The story should be fun and include interactions between the characters.";
+
+  // Add any tutor options that may have been added
+  storyPrompt += storyModel.storyParameters.tutorOptions;
+
+  console.log(storyPrompt);
 
   return storyPrompt;
 };

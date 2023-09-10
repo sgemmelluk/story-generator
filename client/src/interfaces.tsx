@@ -13,6 +13,7 @@ interface IAdditionalActors {
 interface IStoryParameters {
   topic?: "";
   hero?: "";
+  tutorOptions?: "";
 }
 
 interface IStoryModel {

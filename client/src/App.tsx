@@ -13,7 +13,7 @@ function App() {
     return {
       actors: { mainCharacter: "", friend1: "", friend2: "", friend3: "" },
       additionalActors: { specialCharacter1: "", specialCharacter2: "" },
-      storyParameters: { topic: "", hero: "" },
+      storyParameters: { topic: "", hero: "", tutorOptions: "" },
     };
   };
 
