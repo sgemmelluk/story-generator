@@ -24,12 +24,12 @@ export default function GeneratedStoryText({
   useEffect(() => {
     const storyParams = { model: storyModel };
     setLoading(true);
-    axios
-      .post("http://localhost:3000/generate_story", storyParams)
-      .then((response) => {
-        setStory(response.data.message);
-        setLoading(false);
-      });
+    let generateStoryURL =
+      "http://" + window.location.hostname + ":3000/generate_story";
+    axios.post(generateStoryURL, storyParams).then((response) => {
+      setStory(response.data.message);
+      setLoading(false);
+    });
   }, []);
 
   const copyStoryToClipboard = () => {
