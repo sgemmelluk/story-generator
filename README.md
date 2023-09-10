@@ -2,6 +2,8 @@
 
 This app uses generative AI to create a personalised child's story.
 
+This branch adds an extra screen for the tutors at the college to add some extra prompt info.
+
 ## Description
 
 This is a personal project I used to learn how to use ChatGPT via the OpenAI API, as well as implementing a React front end with Routing and Material UI.
